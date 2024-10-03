@@ -1,0 +1,293 @@
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'nav main'
+        'footer footer';
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+/* Spinner Container to Cover Entire Page */
+.spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it stays on top */
+}
+
+/* Spinner Element */
+.spinner {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+}
+
+/* Keyframes for Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hide the Spinner when the Page is Loaded */
+body.loaded .spinner-container {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'header'
+            'nav'
+            'main'
+            'footer';
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: none; /* Hide the navigation bar on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Smaller text for mobile */
+    }
+
+    header, footer {
+        padding: 10px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .resume-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+/* Header Section */
+header {
+    grid-area: header;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+header h1 {
+    margin: 0; 
+    font-size: 2.5em;
+}
+
+header h2 {
+    margin: 5px 0; 
+    font-size: 1.5em; 
+}
+
+
+/* Navigation Section */
+nav {
+    grid-area: nav;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    flex-wrap: wrap; 
+}
+
+.nav-container a {
+    flex-grow: 1; 
+    text-align: center; 
+    color: #0073e6;
+    text-decoration: none;
+    margin: 0 10px; 
+}
+
+.nav-container a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 1025px) {
+    .nav-container {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .nav-container a {
+        width: 100%; 
+        margin: 5px 0; 
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-container {
+        flex-direction: row; 
+    }
+}
+
+
+/* Main Content Section */
+main {
+    grid-area: main;
+    overflow-y: auto; 
+    padding: 80px;
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    gap: 20px; /* Space between sections */
+}
+
+section {
+    flex-grow: 1; /* Allow sections to expand */
+    margin: 10px; /* Add margin for spacing */
+}
+
+
+/* Footer Section */
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 5px 10px; /* Reduced padding for a smaller footer */
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+}
+
+/* Resume Download Button */
+.resume-button {
+    background-color: #0073e6; 
+    color: white; 
+    padding: 8px 16px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 10px;
+}
+
+
+
+/* Skills Section */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Space between grid items */
+}
+
+.skills ul {
+    list-style-type: square;
+    padding: 0;
+    margin: 0; 
+}
+
+/* Add margin to each list item for spacing */
+.skills li {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    transition: transform 0.2s ease; /* Smooth scaling */
+    margin-bottom: 10px; /* Space between bullet points */
+}
+
+/* Scale effect on hover */
+.skills li:hover {
+    transform: scale(1.05); /* Slight scale effect */
+}
+
+/* Projects Section using Grid */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px; 
+}
+
+/* Image Styles */
+.projects img {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: block; 
+}
+
+/* Hover effect for images */
+.projects img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    opacity: 0.8; /* Change opacity on hover */
+}
+
+/* Project Description */
+.projects h4 {
+    grid-column: span 3; 
+    margin: 10px 0; 
+    text-align: center; 
+}
+
+
+/* Table Styling for Education & Experience */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+/* Float and Positioning for Project Images */
+.projects img {
+    float: left;
+    margin-right: 20px;
+}
+
+/* Contact Information */
+.contact {
+    position: relative;
+}
+
+.contact a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
